@@ -40,4 +40,9 @@ kotlinc/bin/cinterop -mode sourcecode -def foo.def -o foo
 
 kotlinc/bin/kotlinc-native kfoo.kt -library foo -linker-options "-L$PWD -lfoo -Wl,-rpath=$PWD" -o kfoo
 
-./kfoo.kexe
+RET=$(./kfoo.kexe)
+if [[ $RET != "42" ]]; then
+  echo "Failed!"
+  exit 1
+fi
+echo "OK"
