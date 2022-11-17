@@ -1,1 +1,5 @@
 kotlinc/
+foo-build/
+foo.*
+libfoo.so
+hello.*
