@@ -11,7 +11,7 @@ if [[ ! -d kotlinc ]]; then
   tar -xz --strip-components=1 -C kotlinc
 fi
 
-cat > hello.kt <<EOF
+cat > kfoo.kt <<EOF
 import foo.*
 fun main() {
   println(foo())
@@ -38,6 +38,6 @@ gcc --shared foo.c -o libfoo.so
 
 kotlinc/bin/cinterop -mode sourcecode -def foo.def -o foo
 
-kotlinc/bin/kotlinc hello.kt -library foo -linker-options "-L$PWD -lfoo -Wl,-rpath=$PWD" -o hello
+kotlinc/bin/kotlinc-native kfoo.kt -library foo -linker-options "-L$PWD -lfoo -Wl,-rpath=$PWD" -o kfoo
 
-./hello.kexe
+./kfoo.kexe
